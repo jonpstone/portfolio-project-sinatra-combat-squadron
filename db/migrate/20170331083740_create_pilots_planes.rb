@@ -1,6 +1,6 @@
-class CreatePilotsPlanes < ActiveRecord::Migration
+class CreatePilotPlanes < ActiveRecord::Migration
   def change
-    create_table :pilots_planes do |t|
+    create_table :pilot_planes do |t|
       t.integer :pilot_id
       t.integer :plane_id
       t.timestamps null: false
