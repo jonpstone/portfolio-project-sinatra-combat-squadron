@@ -1,4 +1,4 @@
-A web app for MMO flight sim communities who wish to keep track of group members and their aircraft for games like 'IL2', 'DCS' as well as arcade oriented experiences like 'World of Warplanes' and 'War Thunder'. This would include a squadron personnel roster and an equipment inventory for each pilot. There are four distinct models: Pilots[read: users], Planes and Weapons. A Pilot has many planes and a plane has many weapons.
+A web app for MMO flight sim communities who wish to keep track of group members and their aircraft for games like 'IL2', 'DCS' as well as arcade oriented experiences like 'World of Warplanes' and 'War Thunder'. This would include a squadron personnel roster and an equipment inventory for each pilot. There are three distinct models: Pilots[read: users], Planes and Weapons. A Pilot has many planes and a plane has many weapons.
 
 The site map:
 
@@ -15,13 +15,6 @@ If not logged in -
               Takes you to pilot creation view and then to your pilot operations room.
 
 If logged in - Welcome back <pilot>!
-
-  [OPTIONS]
-  Pilot Operations Room?
-  Squadron Roster?
-  Aircraft Hangar?
-  Airstrip Armory?
-  Take some R&R?
 
     --- Pilot Operations Room ---
 
@@ -80,7 +73,7 @@ If logged in - Welcome back <pilot>!
 
       --- Airstrip Armory ---
 
-      List all weapons and their properties. Clicking
+      List all weapons and their properties. Clicking on a weapon
 
       [OPTIONS]
       Pilot Operations Room?

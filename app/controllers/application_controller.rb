@@ -16,6 +16,31 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  #-----------------SESSIONS---------------
+
+  get '/login' do
+    if logged_in?
+      redirect to "/"
+    else
+      erb :'pilots/login'
+    end
+  end
+
+  post '/login' do
+    pilot = Pilot.find_by(username: params[:username])
+    if pilot && pilot.authenticate(params[:password])
+      session[:id] = pilot.id
+      redirect to "/"
+    else
+      redirect to "/login"
+    end
+  end
+
+  get '/logout' do
+    session.clear
+    redirect "/login"
+  end
+
   #-----------------HELPERS----------------
 
   helpers do
@@ -24,7 +49,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      User.find(session[:id])
+      Pilot.find(session[:id])
     end
 
     def username
