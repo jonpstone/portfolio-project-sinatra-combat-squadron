@@ -8,7 +8,13 @@
   <body>
 
     <div class="container">
-      <h2>COMBAT SQUADRON</h2>
+      <h2>COMBAT SQUADRON</h2><br>
+      <% if !logged_in? %>
+        <a href="/enlist">ENLIST TODAY!</a>&nbsp&nbsp&nbsp*&nbsp&nbsp&nbspEXISITNG PILOTS<a href="/login">SIGN IN</a>
+      <% else %>
+        <a href="/pilots/:slug/edit">EDIT PILOT</a>&nbsp&nbsp&nbsp✪&nbsp&nbsp&nbsp<a href="/roster">SQUADRON ROSTER</a>&nbsp&nbsp&nbsp✪nbsp&nbsp&nbsp
+        <a href="/hangar">AIRCRAFT HANGAR</a>&nbsp&nbsp&nbsp✪&nbsp&nbsp&nbsp<a href="/pilots/:slug/edit">STATION ARMORY</a>&nbsp&nbsp&nbsp✪&nbsp&nbsp&nbs<a href="/logout">R&R</a>
+      <% end %>
       <%= yield %>
 
 

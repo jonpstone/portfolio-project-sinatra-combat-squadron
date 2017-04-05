@@ -5,15 +5,16 @@ class PilotsController < ApplicationController
 
   #-----------------CREATE-----------------
 
-  get '/signup' do
+  get '/enlist' do
     if logged_in?
+      flash[:message] = 'You have your wings already!'
       redirect to "/"
     else
       erb :'pilots/create_pilot'
     end
   end
 
-  post '/signup' do
+  post '/enlist' do
     if params.any? {|p| params[p].empty? || params[p] == "" || params[p] == " "}
       flash[:message] = 'Hey, fill out all fields Airman!'
       redirect to "/signup"
@@ -28,18 +29,17 @@ class PilotsController < ApplicationController
       session[:username] = @pilot.username
       redirect to "/"
     end
+  end
 
     #------------------READ------------------
 
-    get '/pilot/:slug' do
-      @username = username
+    get '/pilots/:slug' do
       @pilot = Pilot.find_by_slug(params[:slug])
       erb :'pilots/show_pilot'
     end
 
     get '/roster' do
       if logged_in?
-        @username = username
         @pilots = Pilot.all
         erb :'pilots/roster'
       else
@@ -49,9 +49,8 @@ class PilotsController < ApplicationController
 
     #-----------------UPDATE-----------------
 
-    get '/pilot/:slug/edit' do
+    get '/pilots/:slug/edit' do
       if logged_in?
-        @username = username
         @pilot = Pilot.find(params[:slug])
         if @pilot.id == current_user.id
           erb :'pilots/edit_pilot'
@@ -61,11 +60,11 @@ class PilotsController < ApplicationController
       end
     end
 
-    patch '/pilot/:slug' do
+    patch '/pilots/:slug' do
       @pilot = Pilot.find(params[:slug])
       if params.any? {|p| params[p].empty? || params[p] == "" || params[p] == " "}
         flash[:message] = 'Hey, fill out all fields Airman!'
-        redirect to "/pilot/#{@pilot.slug}/edit"
+        redirect to "/pilots/#{@pilot.slug}/edit"
       else
         @pilot.content = (params[:content])
         @pilot.branch = (params[:branch])
@@ -79,7 +78,7 @@ class PilotsController < ApplicationController
 
     #-----------------DELETE-----------------
 
-    delete '/pilot/:slug/delete' do
+    delete '/pilots/:slug/delete' do
       if logged_in?
         @pilot = Pilot.find_by_id(params[:slug])
         if @pilot.id == current_user.id
@@ -87,7 +86,7 @@ class PilotsController < ApplicationController
         end
         redirect to '/roster'
       else
-        flash[:message] = "You don't have that level of clearance!"
+        flash[:message] = "I don't see enough rank on your shoulders Airman!"
         redirect to '/roster'
       end
     end

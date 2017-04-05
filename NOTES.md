@@ -24,7 +24,7 @@ If logged in - Welcome back <pilot>!
       Edit Pilot? [if current user]
       Squadron Roster?
       Aircraft Hangar?
-      Airstrip Armory?
+      Station Armory?
       Take some R&R?
 
               --- Edit Pilot View ---
@@ -42,7 +42,7 @@ If logged in - Welcome back <pilot>!
       [OPTIONS]
       Pilot Operations Room? < to ops room of current user.
       Aircraft Hangar?
-      Airstrip Armory?
+      Station Armory?
       Take some R&R?
 
     --- Aircraft Hangar ---
@@ -53,7 +53,7 @@ If logged in - Welcome back <pilot>!
       New Plane?
       Pilot Operations Room?
       Squadron Roster?
-      Airstrip Armory?
+      Station Armory?
       Take some R&R?
 
               --- New Plane ---
@@ -71,7 +71,7 @@ If logged in - Welcome back <pilot>!
                 Index
                 Edit or Delete Aircraft if current user is an owner
 
-      --- Airstrip Armory ---
+      --- Station Armory ---
 
       List all weapons and their properties. Clicking on a weapon
 

@@ -1,6 +1,8 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
+  use Rack::Flash
 
   configure do
     set :public_folder, 'public'
@@ -32,6 +34,7 @@ class ApplicationController < Sinatra::Base
       session[:id] = pilot.id
       redirect to "/"
     else
+      flash[:message] = "Restricted area! Check in with the MPs."
       redirect to "/login"
     end
   end
@@ -56,4 +59,9 @@ class ApplicationController < Sinatra::Base
       session[:username]
     end
   end
+
+  #-----------------GRAPHIC----------------
+
+
+
 end

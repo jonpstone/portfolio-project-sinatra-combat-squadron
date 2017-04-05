@@ -1,51 +1,46 @@
 require 'rack-flash'
 
-class PlanesController < ApplicationController
+class WeaponsController < ApplicationController
   use Rack::Flash
 
   #-----------------CREATE-----------------
 
-  get '/planes/new' do
+  get '/weapons/new' do
     if logged_in?
-      erb :'planes/create_plane'
+      erb :'weapons/create_planes'
     else
       flash[:message] = "You don't have that kind of authority Airman!"
       redirect to '/login'
     end
   end
 
-  post '/planes' do
+  post '/weapons' do
     if params.any? {|p| params[p].empty? || params[p] == "" || params[p] == " "}
       flash[:message] = "Hey, fill out all fields Airman!"
-      redirect to '/planes/new'
+      redirect to '/weapons/new'
     else
-      @plane = Plane.create(name: params[:name],
-      manufacturer: params[:manufacturer],
-      top_speed: params[:top_speed],
-      ceiling: params[:ceiling],
-      email: params[:email],
-      type: params[:type])
+      @weapon = Weapon.create(type: params[:type],
+      caliber: params[:caliber])
       redirect to '/hangar'
     end
   end
 
   #------------------READ------------------
 
-  get '/planes/:id/' do
+  get '/weapons/:id/' do
     if logged_in?
       @plane = Plane.find(params[:id])
-      erb :'planes/show_plane'
+      erb :'planes/show_weapon'
     else
       flash[:message] = "You don't have that kind of authority Airman!"
       redirect to '/login'
     end
   end
 
-  get '/hangar' do
+  get '/armory' do
     if logged_in?
-      @pilot = Pilot.all
-      @plane = Plane.all
-      erb :'planes/show_hangar'
+      @weapons = Weapon.all
+      erb :'weapons/show_armory'
     else
       flash[:message] = "Restricted area! Check in with the MPs!"
       redirect to '/login'
@@ -54,11 +49,11 @@ class PlanesController < ApplicationController
 
   #-----------------UPDATE-----------------
 
-  get '/planes/:id/edit' do
+  get '/weapons/:id/edit' do
     if logged_in?
-      @plane = Plane.find(params[:id])
-      if @plane.pilot_id == current_user
-        erb :'planes/edit_weapon'
+      @weapon = Weapon.find(params[:id])
+      if @weapon.pilot_id == current_user
+        erb :'weapons/edit_weapon'
       end
     else
       flash[:message] = "You don't have that kind of authority Airman!"
@@ -66,34 +61,31 @@ class PlanesController < ApplicationController
     end
   end
 
-  patch '/planes/:id' do
-    @plane = Plane.find(params[:id])
+  patch '/weapons/:id' do
+    @weapon = Weapon.find(params[:id])
     if params.any? {|p| params[p].empty? || params[p] == "" || params[p] == " "}
       flash[:message] = "Hey, fill out all fields Airman!"
-      redirect to "/planes/#{@plane.id}/edit"
+      redirect to "/weapons/#{@weapon.id}/edit"
     else
-      @plane.name = (params[:name])
-      @plane.manufacturer = (params[:manufacturer])
-      @plane.top_speed = (params[:top_speed])
-      @plane.ceiling = (params[:ceiling])
-      @plane.type = (params[:type])
-      @plane.save
-      redirect to '/hangar'
+      @weapon.type = (params[:type])
+      @weapon.caliber = (params[:caliber])
+      @weapon.save
+      redirect to '/armory'
     end
   end
 
   #-----------------DELETE-----------------
 
-  delete '/planes/:id/delete' do
+  delete '/weapons/:id/delete' do
     if logged_in?
-      @plane = Plane.find(params[:id])
-      if @plane.pilot_id == current_user.id
-        @plane.delete
+      @weapon = Weapon.find(params[:id])
+      if @weapon.pilot_id == current_user.id
+        @weapon.delete
       end
-      redirect to '/hangar'
+      redirect to '/armory'
     else
       flash[:message] = "I don't see enough rank on your shoulders Airman!"
-      redirect to '/hangar'
+      redirect to '/armory'
     end
   end
 end
