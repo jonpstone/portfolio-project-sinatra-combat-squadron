@@ -59,9 +59,4 @@ class ApplicationController < Sinatra::Base
       session[:username]
     end
   end
-
-  #-----------------GRAPHIC----------------
-
-
-
 end

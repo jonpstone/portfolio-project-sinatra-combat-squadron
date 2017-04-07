@@ -1,0 +1,10 @@
+<h3>WEAPON</h3>
+<br>
+NAME: <%= @weapon.name %><br>
+TYPE: <%= @weapon.type %><br>
+CALIBER: <%= @weapon.caliber %><br>
+<br>
+<form action="/planes/<%= @plane.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Weapon">
+</form>

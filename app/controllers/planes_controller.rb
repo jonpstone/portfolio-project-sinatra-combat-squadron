@@ -23,7 +23,6 @@ class PlanesController < ApplicationController
       manufacturer: params[:manufacturer],
       top_speed: params[:top_speed],
       ceiling: params[:ceiling],
-      email: params[:email],
       type: params[:type])
       redirect to '/hangar'
     end
@@ -43,8 +42,7 @@ class PlanesController < ApplicationController
 
   get '/hangar' do
     if logged_in?
-      @pilot = Pilot.all
-      @plane = Plane.all
+      @planes = Plane.all
       erb :'planes/show_hangar'
     else
       flash[:message] = "Restricted area! Check in with the MPs!"

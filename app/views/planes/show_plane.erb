@@ -1,0 +1,16 @@
+<h3><%= @plane.manufacturer %>&nbsp<%= @plane.name %></h3>
+<br>
+TYPE: <%= @plane.type %><br>
+TOP SPEED: <%= @plane.top_speed %><br>
+CEILING: <%= @plane.ceiling %>
+<br>
+CURRENT AIRCREW:
+<br>
+<% @plane.pilots.each do |p| %>
+  PILOT: <a href="/pilots/<%= p.slug %>"><%= p.username %></a>&nbspVICTORIES: <%= p.victories %><br>
+<% end %>
+<br>
+<form action="/planes/<%= @plane.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Plane">
+</form>

@@ -1,0 +1,18 @@
+<h3>AIRCRAFT HANGAR</h3>
+<br>
+<a href="/planes/new">NEW AIRCRAFT</a>
+<br>
+<table>
+  <tr>
+    <th>AIRCRAFT</th>
+    <th>TYPE</th>
+    <th>MANUFACTURER</th>
+  </tr>
+  <% @planes.each do |p| %>
+    <tr>
+      <td><a href="/planes/<%= p.id %>"><%= p.name %></a></td>
+      <td><%= p.type %></td>
+      <td><%= p.manufacturer %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,11 @@
+<h3>EDIT PILOT CREDENTIALS</h3>
+<br>
+<form action="/pilots/<%= @pilot.slug %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  USERNAME: <input type="text" name="username" placeholder="<%= @pilot.username %>">
+  BRANCH/SERVICE: <input type="text" name="branch" placeholder="<%= @pilot.branch %>">
+  RANK: <input type="text" name="rank" placeholder="<%= @pilot.rank %>">
+  AERIAL VICTORIES: <input type="text" name="victories" placeholder="<%= @pilot.victories %>">
+  EMAIL: <input type="text" name="email" placeholder="<%= @pilot.email %>">
+  <input name="submit" value="submit" type="Submit">
+</form>

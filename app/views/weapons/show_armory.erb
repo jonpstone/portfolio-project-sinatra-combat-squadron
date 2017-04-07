@@ -1,0 +1,18 @@
+<h3>STATION ARMORY</h3>
+<br>
+<a href="/weapons/new">NEW WEAPON</a>
+<br>
+<table>
+  <tr>
+    <th>NAME</th>
+    <th>TYPE</th>
+    <th>CALIBER</th>
+  </tr>
+  <% @weapons.each do |w| %>
+    <tr>
+      <td><%= w.name %></td>
+      <td><%= w.type %></td>
+      <td><%= w.caliber %></td>
+    </tr>
+  <% end %>
+</table>

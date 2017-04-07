@@ -17,7 +17,7 @@ class PilotsController < ApplicationController
   post '/enlist' do
     if params.any? {|p| params[p].empty? || params[p] == "" || params[p] == " "}
       flash[:message] = 'Hey, fill out all fields Airman!'
-      redirect to "/signup"
+      redirect to "/enlist"
     else
       @pilot = Pilot.create(username: params[:username],
       branch: params[:branch],
@@ -41,7 +41,7 @@ class PilotsController < ApplicationController
     get '/roster' do
       if logged_in?
         @pilots = Pilot.all
-        erb :'pilots/roster'
+        erb :'pilots/show_roster'
       else
         redirect to "/login"
       end
@@ -56,6 +56,7 @@ class PilotsController < ApplicationController
           erb :'pilots/edit_pilot'
         end
       else
+        flash[:message] = "I don't see enough rank on your shoulders Airman!"
         redirect to "/login"
       end
     end
@@ -66,7 +67,7 @@ class PilotsController < ApplicationController
         flash[:message] = 'Hey, fill out all fields Airman!'
         redirect to "/pilots/#{@pilot.slug}/edit"
       else
-        @pilot.content = (params[:content])
+        @pilot.username = (params[:username])
         @pilot.branch = (params[:branch])
         @pilot.rank = (params[:rank])
         @pilot.victories = (params[:victories])

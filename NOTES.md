@@ -73,9 +73,10 @@ If logged in - Welcome back <pilot>!
 
       --- Station Armory ---
 
-      List all weapons and their properties. Clicking on a weapon
+      List all weapons and their properties.
 
       [OPTIONS]
+      New Weapon
       Pilot Operations Room?
       Squadron Roster?
       Aircraft Hangar?

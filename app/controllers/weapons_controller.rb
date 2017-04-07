@@ -7,7 +7,7 @@ class WeaponsController < ApplicationController
 
   get '/weapons/new' do
     if logged_in?
-      erb :'weapons/create_planes'
+      erb :'weapons/create_weapon'
     else
       flash[:message] = "You don't have that kind of authority Airman!"
       redirect to '/login'
@@ -19,7 +19,8 @@ class WeaponsController < ApplicationController
       flash[:message] = "Hey, fill out all fields Airman!"
       redirect to '/weapons/new'
     else
-      @weapon = Weapon.create(type: params[:type],
+      @weapon = Weapon.create(name: params[:name],
+      type: params[:type],
       caliber: params[:caliber])
       redirect to '/hangar'
     end
