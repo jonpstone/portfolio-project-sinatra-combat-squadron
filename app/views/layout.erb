@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>COMBAT SQUADRON</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" height="10">
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
@@ -10,10 +10,15 @@
     <div class="container">
       <h2>COMBAT SQUADRON</h2><br>
       <% if !logged_in? %>
-        <a href="/enlist">ENLIST TODAY!</a>&nbsp&nbsp&nbsp*&nbsp&nbsp&nbspEXISITNG PILOTS<a href="/login">SIGN IN</a>
+        <a href="/enlist">ENLIST TODAY! </a>&nbsp&nbsp&nbsp
+        <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
+        &nbsp&nbsp&nbsp<a href="/login">SIGN IN</a>
       <% else %>
-        <a href="/pilots/:slug/edit">EDIT PILOT</a>&nbsp&nbsp&nbsp✪&nbsp&nbsp&nbsp<a href="/roster">SQUADRON ROSTER</a>&nbsp&nbsp&nbsp✪nbsp&nbsp&nbsp
-        <a href="/hangar">AIRCRAFT HANGAR</a>&nbsp&nbsp&nbsp✪&nbsp&nbsp&nbsp<a href="/pilots/:slug/edit">STATION ARMORY</a>&nbsp&nbsp&nbsp✪&nbsp&nbsp&nbs<a href="/logout">R&R</a>
+        <a href="/pilots/:slug/edit">EDIT PILOT</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
+        &nbsp&nbsp&nbsp<a href="/roster">SQUADRON ROSTER</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
+        &nbsp&nbsp&nbsp<a href="/hangar">AIRCRAFT HANGAR</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
+        &nbsp&nbsp&nbsp<a href="/pilots/:slug/edit">STATION ARMORY</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
+        &nbsp&nbsp&nbs<a href="/logout">TAKE R&R</a>
       <% end %>
       <%= yield %>
 
