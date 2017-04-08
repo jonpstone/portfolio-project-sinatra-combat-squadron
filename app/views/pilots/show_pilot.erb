@@ -1,14 +1,14 @@
-<h3><%= @pilot.rank %>&nbsp<%= @pilot.username %></h3>
+<h3><%= @pilot.rank %></h3>&nbsp<h3><%= @pilot.username %></h3>
 <br>
 BRANCH/SERVICE: <%= @pilot.branch %> AERIAL VICTORIES: <%= @pilot.victories %>
 <br>
 CURRENT AIRCRAFT:
 <br>
-<% @planes.each do |p| %>
+<% @pilot.planes.each do |p| %>
   <a href="/planes/<%= p.id %>"><%= p.name %></a>&nbsp&nbsp&nbsp<%= p.type %><br>
 <% end %>
 <br>
-<form action="/pilots/<%= @pilot.slug %>/delete" method="post">
+<form action="/pilots/<%= @pilot.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Pilot">
 </form>

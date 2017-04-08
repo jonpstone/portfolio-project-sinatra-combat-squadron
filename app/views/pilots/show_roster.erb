@@ -9,7 +9,7 @@
   <% @pilots.each do |p| %>
     <tr>
       <td><%= p.rank %></td>
-      <td><a href="/pilots/<%= p.slug %>"><%= p.username %></a></td>
+      <td><a href="/pilots/<%= p.id %>"><%= p.username %></a></td>
       <td><%= p.victories %></td>
     </tr>
   <% end %>

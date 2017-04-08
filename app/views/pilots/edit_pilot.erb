@@ -1,6 +1,6 @@
 <h3>EDIT PILOT CREDENTIALS</h3>
 <br>
-<form action="/pilots/<%= @pilot.slug %>" method="post">
+<form action="/pilots/<%= @pilot.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
   USERNAME: <input type="text" name="username" placeholder="<%= @pilot.username %>">
   BRANCH/SERVICE: <input type="text" name="branch" placeholder="<%= @pilot.branch %>">

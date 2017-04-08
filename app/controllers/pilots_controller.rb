@@ -15,7 +15,12 @@ class PilotsController < ApplicationController
   end
 
   post '/enlist' do
-    if params.any? {|p| params[p].empty? || params[p] == "" || params[p] == " "}
+    if params["username"].empty? ||
+      params["branch"].empty? ||
+      params["rank"].empty? ||
+      params["victories"].empty? ||
+      params["email"].empty? ||
+      params["password"].empty?
       flash[:message] = 'Hey, fill out all fields Airman!'
       redirect to "/enlist"
     else
@@ -51,7 +56,7 @@ class PilotsController < ApplicationController
 
     get '/pilots/:slug/edit' do
       if logged_in?
-        @pilot = Pilot.find(params[:slug])
+        @pilot = Pilot.find_by_slug(params[:slug])
         if @pilot.id == current_user.id
           erb :'pilots/edit_pilot'
         end

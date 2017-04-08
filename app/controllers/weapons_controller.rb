@@ -15,8 +15,9 @@ class WeaponsController < ApplicationController
   end
 
   post '/weapons' do
-    if params.any? {|p| params[p].empty? || params[p] == "" || params[p] == " "}
-      flash[:message] = "Hey, fill out all fields Airman!"
+    if params["name"].empty? ||
+      params["type"].empty? ||
+      params["caliber"].empty?
       redirect to '/weapons/new'
     else
       @weapon = Weapon.create(name: params[:name],

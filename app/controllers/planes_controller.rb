@@ -15,7 +15,11 @@ class PlanesController < ApplicationController
   end
 
   post '/planes' do
-    if params.any? {|p| params[p].empty? || params[p] == "" || params[p] == " "}
+    if params["name"].empty? ||
+      params["manufacturer"].empty? ||
+      params["top_speed"].empty? ||
+      params["ceiling"].empty? ||
+      params["type"].empty?
       flash[:message] = "Hey, fill out all fields Airman!"
       redirect to '/planes/new'
     else

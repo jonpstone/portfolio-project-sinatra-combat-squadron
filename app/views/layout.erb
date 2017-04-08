@@ -15,11 +15,12 @@
         &nbsp&nbsp&nbsp<a href="/login">SIGN IN</a>
       <% else %>
         WELCOME BACK TO THE FRAY! <%= @username %><br>
-        <a href="/pilots/:slug">OPS ROOM</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
-        &nbsp&nbsp&nbsp<a href="/pilots/:slug/edit">EDIT PILOT</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
+        <br />
+        <a href="/pilots/:id">OPS ROOM</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
+        &nbsp&nbsp&nbsp<a href="/pilots/:id/edit">EDIT PILOT</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
         &nbsp&nbsp&nbsp<a href="/roster">SQUADRON ROSTER</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
         &nbsp&nbsp&nbsp<a href="/hangar">AIRCRAFT HANGAR</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
-        &nbsp&nbsp&nbsp<a href="/pilots/:slug/edit">STATION ARMORY</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
+        &nbsp&nbsp&nbsp<a href="/armory">STATION ARMORY</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
         &nbsp&nbsp&nbsp<a href="/logout">TAKE SOME R&R</a>
       <% end %>
       <%= yield %>
