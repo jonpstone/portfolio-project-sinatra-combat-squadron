@@ -9,32 +9,33 @@ class WeaponsController < ApplicationController
     if logged_in?
       erb :'weapons/create_weapon'
     else
-      flash[:message] = "You don't have that kind of authority Airman!"
+      flash[:notice] = "You don't have that kind of authority Airman!"
       redirect to '/login'
     end
   end
 
   post '/weapons' do
-    if params["name"].empty? ||
-      params["type"].empty? ||
-      params["caliber"].empty?
-      redirect to '/weapons/new'
-    else
-      @weapon = Weapon.create(name: params[:name],
-      type: params[:type],
-      caliber: params[:caliber])
-      redirect to '/hangar'
+    params.each do |k, v|
+      if v.blank?
+        flash[:notice] = "Hey, fill out all fields Airman!"
+        redirect to '/weapons/new'
+      else
+        @weapon = Weapon.create(name: params[:name],
+        type: params[:type],
+        caliber: params[:caliber])
+        redirect to '/hangar'
+      end
     end
   end
 
   #------------------READ------------------
 
-  get '/weapons/:id/' do
+  get '/weapons/:id' do
     if logged_in?
-      @plane = Plane.find(params[:id])
-      erb :'planes/show_weapon'
+      @weapon = Weapon.find(params[:id])
+      erb :'weapons/show_weapon'
     else
-      flash[:message] = "You don't have that kind of authority Airman!"
+      flash[:notice] = "You don't have that kind of authority Airman!"
       redirect to '/login'
     end
   end
@@ -44,7 +45,7 @@ class WeaponsController < ApplicationController
       @weapons = Weapon.all
       erb :'weapons/show_armory'
     else
-      flash[:message] = "Restricted area! Check in with the MPs!"
+      flash[:notice] = "Restricted area! Check in with the MPs!"
       redirect to '/login'
     end
   end
@@ -58,22 +59,17 @@ class WeaponsController < ApplicationController
         erb :'weapons/edit_weapon'
       end
     else
-      flash[:message] = "You don't have that kind of authority Airman!"
+      flash[:notice] = "You don't have that kind of authority Airman!"
       redirect to '/login'
     end
   end
 
   patch '/weapons/:id' do
     @weapon = Weapon.find(params[:id])
-    if params.any? {|p| params[p].empty? || params[p] == "" || params[p] == " "}
-      flash[:message] = "Hey, fill out all fields Airman!"
-      redirect to "/weapons/#{@weapon.id}/edit"
-    else
-      @weapon.type = (params[:type])
-      @weapon.caliber = (params[:caliber])
-      @weapon.save
-      redirect to '/armory'
-    end
+    @weapon.classification = (params[:classification])
+    @weapon.caliber = (params[:caliber])
+    @weapon.save
+    redirect to '/armory'
   end
 
   #-----------------DELETE-----------------
@@ -86,7 +82,7 @@ class WeaponsController < ApplicationController
       end
       redirect to '/armory'
     else
-      flash[:message] = "I don't see enough rank on your shoulders Airman!"
+      flash[:notice] = "I don't see enough rank on your shoulders Airman!"
       redirect to '/armory'
     end
   end

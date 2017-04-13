@@ -1,18 +1,23 @@
 <h3>AIRCRAFT HANGAR</h3>
-<br>
-<a href="/planes/new">NEW AIRCRAFT</a>
-<br>
+<h4><a href="/planes/new">NEW AIRCRAFT?</a></h4>
+<br />
+<br />
 <table>
   <tr>
-    <th>AIRCRAFT</th>
-    <th>TYPE</th>
-    <th>MANUFACTURER</th>
+    <th style="padding:0 15px 0 15px;">AIRCRAFT</th>
+    <th style="padding:0 15px 0 15px;">TYPE</th>
+    <th style="padding:0 15px 0 15px;">MANUFACTURER</th>
   </tr>
-  <% @planes.each do |p| %>
+  <tr>
+    <td>
+      <br />
+    </td>
+  </tr>
+  <% @plane.each do |p| %>
     <tr>
-      <td><a href="/planes/<%= p.id %>"><%= p.name %></a></td>
-      <td><%= p.type %></td>
-      <td><%= p.manufacturer %></td>
+      <td style="padding:0 15px 0 15px;"><a href="/planes/<%= p.id %>"><%= p.name %></a></td>
+      <td style="padding:0 15px 0 15px;"><%= p.classification %></td>
+      <td style="padding:0 15px 0 15px;"><%= p.manufacturer %></td>
     </tr>
   <% end %>
 </table>

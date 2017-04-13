@@ -1,8 +1,20 @@
-<h3>ADD NEW AIRCRAFT TO HANGAR</h3>
-<br>
+<h3>DESIGN A NEW WEAPON</h3>
+<br />
 <form action="/weapons" method="post">
-  NAME: <input type="text" name="name"><br>
-  TYPE: <input type="text" name="type"><br>
-  CALIBER: <input type="text" name="caliber"><br>
+  <table>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">NAME:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="name"><br></td>
+    </tr>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">TYPE:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="classification"></td>
+    </tr>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">CALIBER:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="caliber"></td>
+    </tr>
+  </table>
+  <br />
   <input type="submit" value="Submit">
 </form>

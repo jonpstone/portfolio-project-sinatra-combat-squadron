@@ -9,47 +9,45 @@ class PlanesController < ApplicationController
     if logged_in?
       erb :'planes/create_plane'
     else
-      flash[:message] = "You don't have that kind of authority Airman!"
+      flash[:notice] = "You don't have that kind of authority Airman!"
       redirect to '/login'
     end
   end
 
   post '/planes' do
-    if params["name"].empty? ||
-      params["manufacturer"].empty? ||
-      params["top_speed"].empty? ||
-      params["ceiling"].empty? ||
-      params["type"].empty?
-      flash[:message] = "Hey, fill out all fields Airman!"
-      redirect to '/planes/new'
-    else
-      @plane = Plane.create(name: params[:name],
-      manufacturer: params[:manufacturer],
-      top_speed: params[:top_speed],
-      ceiling: params[:ceiling],
-      type: params[:type])
-      redirect to '/hangar'
+    params.each do |k, v|
+      if v.blank?
+        flash[:notice] = "Hey, fill out all fields Airman!"
+        redirect to '/planes/new'
+      else
+        @plane = Plane.create(name: params[:name],
+        manufacturer: params[:manufacturer],
+        top_speed: params[:top_speed],
+        ceiling: params[:ceiling],
+        type: params[:type])
+        redirect to '/hangar'
+      end
     end
   end
 
   #------------------READ------------------
 
-  get '/planes/:id/' do
+  get '/planes/:id' do
     if logged_in?
       @plane = Plane.find(params[:id])
       erb :'planes/show_plane'
     else
-      flash[:message] = "You don't have that kind of authority Airman!"
+      flash[:notice] = "You don't have that kind of authority Airman!"
       redirect to '/login'
     end
   end
 
   get '/hangar' do
     if logged_in?
-      @planes = Plane.all
+      @plane = Plane.all
       erb :'planes/show_hangar'
     else
-      flash[:message] = "Restricted area! Check in with the MPs!"
+      flash[:notice] = "Restricted area! Check in with the MPs!"
       redirect to '/login'
     end
   end
@@ -63,25 +61,20 @@ class PlanesController < ApplicationController
         erb :'planes/edit_weapon'
       end
     else
-      flash[:message] = "You don't have that kind of authority Airman!"
+      flash[:notice] = "You don't have that kind of authority Airman!"
       redirect to '/login'
     end
   end
 
   patch '/planes/:id' do
     @plane = Plane.find(params[:id])
-    if params.any? {|p| params[p].empty? || params[p] == "" || params[p] == " "}
-      flash[:message] = "Hey, fill out all fields Airman!"
-      redirect to "/planes/#{@plane.id}/edit"
-    else
-      @plane.name = (params[:name])
-      @plane.manufacturer = (params[:manufacturer])
-      @plane.top_speed = (params[:top_speed])
-      @plane.ceiling = (params[:ceiling])
-      @plane.type = (params[:type])
-      @plane.save
-      redirect to '/hangar'
-    end
+    @plane.name = (params[:name])
+    @plane.manufacturer = (params[:manufacturer])
+    @plane.top_speed = (params[:top_speed])
+    @plane.ceiling = (params[:ceiling])
+    @plane.type = (params[:type])
+    @plane.save
+    redirect to '/hangar'
   end
 
   #-----------------DELETE-----------------
@@ -94,7 +87,7 @@ class PlanesController < ApplicationController
       end
       redirect to '/hangar'
     else
-      flash[:message] = "I don't see enough rank on your shoulders Airman!"
+      flash[:notice] = "I don't see enough rank on your shoulders Airman!"
       redirect to '/hangar'
     end
   end

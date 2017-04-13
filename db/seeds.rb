@@ -63,7 +63,7 @@ pilots_list = {
       :password_digest => "davidmccampbell"
     },
     "Gregory Boyington" => {
-      :branch => "US Marines",
+      :branch => "United States Marine Corps",
       :rank => "Major",
       :victories => 34,
       :email => "boyington@test.com",
@@ -85,55 +85,55 @@ planes_list = {
       :manufacturer => "Lockheed",
       :top_speed => 414,
       :ceiling => 44000,
-      :type => "Fighter"
+      :classification => "Fighter"
     },
     "P-47 Thunderbolt" => {
       :manufacturer => "Republic",
       :top_speed => 433,
       :ceiling => 43000,
-      :type => "Fighter"
+      :classification => "Fighter"
     },
     "Bf 109" => {
       :manufacturer => "Messerschmitt",
       :top_speed => 398,
       :ceiling => 39400,
-      :type => "Fighter"
+      :classification => "Fighter"
     },
     "Mosquito" => {
       :manufacturer => "de Havilland",
       :top_speed => 415,
       :ceiling => 37000,
-      :type => "Bomber"
+      :classification => "Bomber"
     },
     "Hurricane" => {
       :manufacturer => "Hawker",
       :top_speed => 340,
       :ceiling => 36000,
-      :type => "Fighter-Bomber"
+      :classification => "Fighter-Bomber"
     },
     "La-7" => {
       :manufacturer => "Lavochkin",
       :top_speed => 411,
       :ceiling => 34300,
-      :type => "Fighter"
+      :classification => "Fighter"
     },
     "F6F Hellcat" => {
       :manufacturer => "Grumman",
       :top_speed => 391,
       :ceiling => 37300,
-      :type => "Fighter"
+      :classification => "Fighter"
     },
     "F4U Corsair" => {
       :manufacturer => "Vought",
       :top_speed => 446,
       :ceiling => 41500,
-      :type => "Fighter-Bomber"
+      :classification => "Fighter-Bomber"
     },
     "Spitfire (Griffon)" => {
       :manufacturer => "Supermarine",
       :top_speed => 449,
       :ceiling => 43000,
-      :type => "Fighter"
+      :classification => "Fighter"
     }
   }
 
@@ -148,51 +148,51 @@ end
 
 weapons_list = {
     "Hispano Mk.II" => {
-      :type => "Cannon",
+      :classification => "Cannon",
       :caliber => "20mm"
     },
     "M2 Browning" => {
-      :type => "Machine Gun",
+      :classification => "Machine Gun",
       :caliber => ".50"
     },
     "Light Bomb" => {
-      :type => "Free fall HE",
+      :classification => "Free fall HE",
       :caliber => "250lbs"
     },
     "Medium Bomb" => {
-      :type => "Free fall HE",
+      :classification => "Free fall HE",
       :caliber => "500lbs"
     },
     "Heavy Bomb" => {
-      :type => "Free fall HE",
+      :classification => "Free fall HE",
       :caliber => "1000lbs"
     },
     "Upkeep Bomb" => {
-      :type => "Bouncing",
+      :classification => "Bouncing",
       :caliber => "9250lbs"
     },
     "MG 131" => {
-      :type => "Machine Gun",
+      :classification => "Machine Gun",
       :caliber => "13mm"
     },
     "MG 151/20" => {
-      :type => "Cannon",
+      :classification => "Cannon",
       :caliber => "20mm"
     },
     "MG 108" => {
-      :type => "Cannon",
+      :classification => "Cannon",
       :caliber => "30mm"
     },
     "Browning Mk.II" => {
-      :type => "Machine Gun",
+      :classification => "Machine Gun",
       :caliber => ".303"
     },
     "ShVAK" => {
-      :type => "Cannon",
+      :classification => "Cannon",
       :caliber => "20mm"
     },
     "Berezin B-20" => {
-      :type => "Cannon",
+      :classification => "Cannon",
       :caliber => "20mm"
     },
   }

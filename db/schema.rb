@@ -43,17 +43,17 @@ ActiveRecord::Schema.define(version: 20170401042545) do
     t.string   "manufacturer"
     t.string   "top_speed"
     t.string   "ceiling"
-    t.string   "type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "classification"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "weapons", force: :cascade do |t|
     t.string   "name"
-    t.string   "type"
+    t.string   "classification"
     t.string   "caliber"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
 end

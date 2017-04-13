@@ -8,16 +8,24 @@
   <body>
 
     <div class="container">
-      <h2>COMBAT SQUADRON</h2><br>
+      <table>
+        <tr>
+          <td align='left' style="padding: 10px 15px 0 0;"><img src="https://static.warthunder.com/upload/image/News/september14/1/US_roundel_1943-1947_svg.png" height="50"></td>
+          <td><h1>COMBAT SQUADRON</h1></td>
+        </tr>
+      </table>
+      <br />
       <% if !logged_in? %>
         <a href="/enlist">ENLIST TODAY! </a>&nbsp&nbsp&nbsp
         <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
         &nbsp&nbsp&nbsp<a href="/login">SIGN IN</a>
       <% else %>
-        WELCOME BACK TO THE FRAY! <%= @username %><br>
+        <% @pilot = Pilot.find(session[:id]) %>
+        <h4><a href="/pilots/<%= @pilot.id %>"><%= @pilot.username %></a> is logged in.</h4>
         <br />
-        <a href="/pilots/:id">OPS ROOM</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
-        &nbsp&nbsp&nbsp<a href="/pilots/:id/edit">EDIT PILOT</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
+        <br />
+        <a href="/pilots/:id">VIEW PILOT DATA</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
+        &nbsp&nbsp&nbsp<a href="/pilots/:id/edit">EDIT PILOT DATA</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
         &nbsp&nbsp&nbsp<a href="/roster">SQUADRON ROSTER</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
         &nbsp&nbsp&nbsp<a href="/hangar">AIRCRAFT HANGAR</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
         &nbsp&nbsp&nbsp<a href="/armory">STATION ARMORY</a>&nbsp&nbsp&nbsp<img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">

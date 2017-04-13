@@ -1,11 +1,29 @@
-<h3>EDIT PILOT CREDENTIALS</h3>
+<h3>EDIT PILOT DATA</h3>
 <br>
 <form action="/pilots/<%= @pilot.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
-  USERNAME: <input type="text" name="username" placeholder="<%= @pilot.username %>">
-  BRANCH/SERVICE: <input type="text" name="branch" placeholder="<%= @pilot.branch %>">
-  RANK: <input type="text" name="rank" placeholder="<%= @pilot.rank %>">
-  AERIAL VICTORIES: <input type="text" name="victories" placeholder="<%= @pilot.victories %>">
-  EMAIL: <input type="text" name="email" placeholder="<%= @pilot.email %>">
-  <input name="submit" value="submit" type="Submit">
+  <table>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">USERNAME:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="username" placeholder="<%= @pilot.username %>"></td>
+    </tr>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">BRANCH/SERVICE:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="branch" placeholder="<%= @pilot.branch %>"></td>
+    </tr>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">RANK:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="rank" placeholder="<%= @pilot.rank %>"></td>
+    </tr>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">AERIAL VICTORIES:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="victories" placeholder="<%= @pilot.victories %>"></td>
+    </tr>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">EMAIL:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="email" placeholder="<%= @pilot.email %>"></td>
+    </tr>
+  </table>
+  <br />
+  <input name="submit" value="Submit" type="Submit">
 </form>

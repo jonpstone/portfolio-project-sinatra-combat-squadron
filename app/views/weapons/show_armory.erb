@@ -1,18 +1,23 @@
 <h3>STATION ARMORY</h3>
-<br>
-<a href="/weapons/new">NEW WEAPON</a>
-<br>
+<h4><a href="/weapons/new">NEW WEAPON?</a></h4>
+<br />
+<br />
 <table>
   <tr>
-    <th>NAME</th>
-    <th>TYPE</th>
-    <th>CALIBER</th>
+    <th style="padding:0 15px 0 15px;">NAME</th>
+    <th style="padding:0 15px 0 15px;">TYPE</th>
+    <th style="padding:0 15px 0 15px;">CALIBER</th>
+  </tr>
+  <tr>
+    <td>
+      <br />
+    </td>
   </tr>
   <% @weapons.each do |w| %>
     <tr>
-      <td><%= w.name %></td>
-      <td><%= w.type %></td>
-      <td><%= w.caliber %></td>
+      <td style="padding:0 15px 0 15px;"><a href="/weapons/<%= w.id %>"><%= w.name %></a></td>
+      <td style="padding:0 15px 0 15px;"><%= w.classification %></td>
+      <td style="padding:0 15px 0 15px;"><%= w.caliber %></td>
     </tr>
   <% end %>
 </table>

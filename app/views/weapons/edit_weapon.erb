@@ -3,7 +3,7 @@
 <form action="/weapons/<%= @weapon.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
   NAME: <input type="text" name="name" placeholder="<%= @weapon.name %>">
-  TYPE: <input type="text" name="type" placeholder="<%= @weapon.type %>">
+  CLASSIFICATION: <input type="text" name="type" placeholder="<%= @weapon.classification %>">
   CALIBER: <input type="text" name="caliber" placeholder="<%= @weapon.caliber %>">
   <input name="submit" value="submit" type="Submit">
 </form>

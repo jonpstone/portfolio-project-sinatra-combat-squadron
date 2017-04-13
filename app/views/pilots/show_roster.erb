@@ -1,16 +1,23 @@
 <h3>SQUADRON ROSTER</h3>
-<br>
+<br />
 <table>
   <tr>
-    <th>RANK</th>
-    <th>NAME</th>
-    <th>VICTORIES</th>
+    <th style="padding:0 15px 0 15px;">RANK</th>
+    <th style="padding:0 15px 0 15px;">NAME</th>
+    <th style="padding:0 15px 0 15px;">VICTORIES</th>
+    <th style="padding:0 15px 0 15px;">BRANCH</th>
+  </tr>
+  <tr>
+    <td>
+      <br />
+    </td>
   </tr>
   <% @pilots.each do |p| %>
     <tr>
-      <td><%= p.rank %></td>
-      <td><a href="/pilots/<%= p.id %>"><%= p.username %></a></td>
-      <td><%= p.victories %></td>
+      <td style="padding:0 15px 0 15px;"><%= p.rank %></td>
+      <td style="padding:0 15px 0 15px;"><a href="/pilots/<%= p.id %>"><%= p.username %></a></td>
+      <td style="padding:0 15px 0 15px;"><%= p.victories %></td>
+      <td style="padding:0 15px 0 15px;"><%= p.branch %></td>
     </tr>
   <% end %>
 </table>

@@ -5,7 +5,7 @@ class CreatePlanes < ActiveRecord::Migration
       t.string :manufacturer
       t.string :top_speed
       t.string :ceiling
-      t.string :type
+      t.string :classification
       t.timestamps null: false
     end
   end

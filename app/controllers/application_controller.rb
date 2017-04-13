@@ -14,7 +14,6 @@ class ApplicationController < Sinatra::Base
   #------------------INDEX-----------------
 
   get '/' do
-    @username = username
     erb :index
   end
 
@@ -32,6 +31,7 @@ class ApplicationController < Sinatra::Base
     pilot = Pilot.find_by(username: params[:username])
     if pilot && pilot.authenticate(params[:password])
       session[:id] = pilot.id
+      session[:username] = pilot.username
       redirect to "/"
     else
       flash[:message] = "Restricted area! Check in with the MPs."

@@ -1,10 +1,28 @@
 <h3>ADD NEW AIRCRAFT TO HANGAR</h3>
-<br>
+<br />
 <form action="/planes" method="post">
-  NAME/DESIGNATION: <input type="text" name="name"><br>
-  MANUFACTURER: <input type="text" name="manufacturer"><br>
-  TOP SPEED: <input type="number" name="top_speed"><br>
-  CEILING: <input type="number" name="ceiling"><br>
-  TYPE: <input type="text" name="type"><br>
+  <table>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">NAME/DESIGNATION:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="name"></td>
+    </tr>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">MANUFACTURER:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="manufacturer"></td>
+    </tr>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">TOP SPEED:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="number" name="top_speed"></td>
+    </tr>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">CEILING:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="number" name="ceiling"></td>
+    </tr>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">CLASSIFICATION:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="classification"></td>
+    </tr>
+  </table>
+  <br />
   <input type="submit" value="Submit">
 </form>
