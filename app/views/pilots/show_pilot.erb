@@ -1,13 +1,26 @@
-<h3><%= @pilot.rank %></h3>&nbsp<h3><%= @pilot.username %></h3>
-<br>
-BRANCH/SERVICE: <%= @pilot.branch %> AERIAL VICTORIES: <%= @pilot.victories %>
-<br>
-CURRENT AIRCRAFT:
-<br>
-<% @pilot.planes.each do |p| %>
-  <a href="/planes/<%= p.id %>"><%= p.name %></a>&nbsp&nbsp&nbsp<%= p.type %><br>
-<% end %>
-<br>
+<h3><%= @pilot.rank %>&nbsp<%= @pilot.username %></h3>
+<br  />
+BRANCH/SERVICE: <%= @pilot.branch %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAERIAL VICTORIES: <%= @pilot.victories %>
+<br />
+<br />
+<table>
+  <tr>
+    <td style="padding:0 15px 0 0;">CURRENT AIRCRAFT:</td>
+    <td style="padding:0 15px 0 0;">TYPE:</td>
+  </tr>
+  <tr>
+    <td>
+      <br />
+    </td>
+  </tr>
+  <% @pilot.planes.each do |p| %>
+  <tr>
+    <td style="padding:0 15px 0 0;"><a href="/planes/<%= p.id %>"><%= p.name %></a></td>
+    <td style="padding:0 15px 0 0;"><%= p.classification %></td>
+  </tr>
+  <% end %>
+</table>
+<br />
 <form action="/pilots/<%= @pilot.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Pilot">

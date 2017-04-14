@@ -18,17 +18,11 @@ class PilotsController < ApplicationController
         flash[:notice] = 'Hey, fill out all fields Airman!'
         redirect to "/enlist"
       else
-        @pilot = Pilot.create(
-        username: params[:username],
-        branch: params[:branch],
-        rank: params[:rank],
-        victories: params[:victories],
-        email: params[:email],
-        password: params[:password])
-        binding.pry
-        rtherh
+        @pilot = Pilot.create(params[:pilot])
         session[:id] = @pilot.id
         session[:username] = @pilot.username
+        binding.pry
+        @pilot.save
         redirect to "/"
       end
     end
@@ -38,7 +32,6 @@ class PilotsController < ApplicationController
 
   get '/pilots/:id' do
     @pilot = Pilot.find(session[:id])
-    binding.pry
     erb :'pilots/show_pilot'
   end
 
