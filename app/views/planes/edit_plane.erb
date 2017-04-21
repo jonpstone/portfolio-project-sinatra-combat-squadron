@@ -31,16 +31,17 @@
   <br />
 
   <h4>SELECT YOUR WEAPONS</h4>
-  <sm>Current Weapons (please re-check below to keep...)</sm>
+  <sm>Current Weapons (please re-check below to keep...)&nbsp&nbsp&nbsp</sm>
     <% @plane.weapons.each do |p| %>
       <a href="/weapons/<%= p.id %>"><%= p.name %>&nbsp&nbsp&nbsp</a>
     <% end %>
   <br />
   <br />
     <% Weapon.all.each do |w| %>
-      <label><%= w.name %>&nbsp<%= w.classification %></label>
-      <input type="checkbox" id="weapon_<%=w.id%>" name="plane[weapon_ids][]" value="<%= w.id %>"><br />
+      <label>&nbsp&nbsp&nbsp<%= w.name %>&nbsp</label>
+      <input type="checkbox" id="weapon_<%=w.id%>" name="plane[weapon_ids][]" value="<%= w.id %>">
     <% end %>
+  <br />
   <br />
   <input name="submit" value="Submit" type="Submit">
 </form>

@@ -35,9 +35,10 @@
   <h4>SELECT YOUR AIRCRAFT</h4>
   <br />
     <% Plane.all.each do |p| %>
-      <label><%= p.name %></label>
-      <input type="checkbox" id="plane_<%=p.id%>" name="pilot[plane_ids][]" value="<%= p.id %>"><br />
+      <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= p.name %>&nbsp</label>
+      <input type="checkbox" id="plane_<%=p.id%>" name="pilot[plane_ids][]" value="<%= p.id %>">
     <% end %>
-    <br />
+  <br />
+  <br />
   <input type="submit" value="Submit">
 </form>
