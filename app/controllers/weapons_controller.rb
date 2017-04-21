@@ -20,10 +20,9 @@ class WeaponsController < ApplicationController
         flash[:notice] = "Hey, fill out all fields Airman!"
         redirect to '/weapons/new'
       else
-        @weapon = Weapon.create(name: params[:name],
-        type: params[:type],
-        caliber: params[:caliber])
-        redirect to '/hangar'
+        @weapon = Weapon.create(params[:weapon])
+        @weapon.save
+        redirect to '/armory'
       end
     end
   end
@@ -55,9 +54,7 @@ class WeaponsController < ApplicationController
   get '/weapons/:id/edit' do
     if logged_in?
       @weapon = Weapon.find(params[:id])
-      if @weapon.pilot_id == current_user
-        erb :'weapons/edit_weapon'
-      end
+      erb :'weapons/edit_weapon'
     else
       flash[:notice] = "You don't have that kind of authority Airman!"
       redirect to '/login'

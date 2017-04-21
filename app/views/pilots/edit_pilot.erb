@@ -1,29 +1,42 @@
 <h3>EDIT PILOT DATA</h3>
-<br>
+<br />
 <form action="/pilots/<%= @pilot.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <table>
     <tr>
       <td align='right' style="padding:0 0 15px 0;">USERNAME:&nbsp&nbsp&nbsp</td>
-      <td style="padding:0 0 15px 0;"><input type="text" name="username" placeholder="<%= @pilot.username %>"></td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="pilot[username]" placeholder="<%= @pilot.username %>"></td>
     </tr>
     <tr>
       <td align='right' style="padding:0 0 15px 0;">BRANCH/SERVICE:&nbsp&nbsp&nbsp</td>
-      <td style="padding:0 0 15px 0;"><input type="text" name="branch" placeholder="<%= @pilot.branch %>"></td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="pilot[branch]" placeholder="<%= @pilot.branch %>"></td>
     </tr>
     <tr>
       <td align='right' style="padding:0 0 15px 0;">RANK:&nbsp&nbsp&nbsp</td>
-      <td style="padding:0 0 15px 0;"><input type="text" name="rank" placeholder="<%= @pilot.rank %>"></td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="pilot[rank]" placeholder="<%= @pilot.rank %>"></td>
     </tr>
     <tr>
       <td align='right' style="padding:0 0 15px 0;">AERIAL VICTORIES:&nbsp&nbsp&nbsp</td>
-      <td style="padding:0 0 15px 0;"><input type="text" name="victories" placeholder="<%= @pilot.victories %>"></td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="pilot[victories]" placeholder="<%= @pilot.victories %>"></td>
     </tr>
     <tr>
       <td align='right' style="padding:0 0 15px 0;">EMAIL:&nbsp&nbsp&nbsp</td>
-      <td style="padding:0 0 15px 0;"><input type="text" name="email" placeholder="<%= @pilot.email %>"></td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="pilot[email]" placeholder="<%= @pilot.email %>"></td>
     </tr>
   </table>
+  <br />
+
+  <h4>SELECT YOUR AIRCRAFT</h4>
+  <sm>Current Planes (please re-check below to keep...)</sm>
+    <% @pilot.planes.each do |p| %>
+      <a href="/planes/<%= p.id %>"><%= p.name %>&nbsp&nbsp&nbsp</a>
+    <% end %>
+  <br />
+  <br />
+    <% Plane.all.each do |p| %>
+      <label><%= p.name %></label>
+      <input type="checkbox" id="plane_<%=p.id%>" name="pilot[plane_ids][]" value="<%= p.id %>"><br />
+    <% end %>
   <br />
   <input name="submit" value="Submit" type="Submit">
 </form>

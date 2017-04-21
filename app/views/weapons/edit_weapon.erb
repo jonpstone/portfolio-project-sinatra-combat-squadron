@@ -1,9 +1,20 @@
 <h3>EDIT WEAPON</h3>
-<br>
+<br />
 <form action="/weapons/<%= @weapon.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
-  NAME: <input type="text" name="name" placeholder="<%= @weapon.name %>">
-  CLASSIFICATION: <input type="text" name="type" placeholder="<%= @weapon.classification %>">
-  CALIBER: <input type="text" name="caliber" placeholder="<%= @weapon.caliber %>">
-  <input name="submit" value="submit" type="Submit">
+  <table>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">NAME:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="weapon[name]" placeholder="<%= @weapon.name %>"></td>
+    </tr>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">TYPE:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="weapon[classification]" placeholder="<%= @weapon.classification %>"></td>
+    </tr>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">CALIBER:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="pilot[caliber]" placeholder="<%= @weapon.caliber %>"></td>
+    </tr>
+  </table>
+  <input name="submit" value="Submit" type="Submit">
 </form>

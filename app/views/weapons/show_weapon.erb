@@ -1,9 +1,25 @@
 <h3>WEAPON</h3>
-<br>
-NAME: <%= @weapon.name %><br>
-CLASSIFICATION: <%= @weapon.classification %><br>
-CALIBER: <%= @weapon.caliber %><br>
-<br>
+<h4><a href="/weapons/<%= @weapon.id %>/edit">EDIT WEAPON?</a></h4>
+<br />
+<table>
+  <tr>
+    <th style="padding:0 15px 0 0;">NAME</th>
+    <th style="padding:0 15px 0 0;">TYPE</th>
+    <th style="padding:0 15px 0 0;">CALIBER</th>
+  </tr>
+  <tr>
+    <td>
+      <br />
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:0 15px 0 0;"><%= @weapon.name %></a></td>
+    <td style="padding:0 15px 0 0;"><%= @weapon.classification %></td>
+    <td style="padding:0 15px 0 0;"><%= @weapon.caliber %></td>
+  </tr>
+</table>
+<br  />
+<br  />
 <form action="/weapons/<%= @weapon.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Weapon">

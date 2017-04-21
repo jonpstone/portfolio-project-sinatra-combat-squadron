@@ -21,7 +21,6 @@ class PilotsController < ApplicationController
         @pilot = Pilot.create(params[:pilot])
         session[:id] = @pilot.id
         session[:username] = @pilot.username
-        binding.pry
         @pilot.save
         redirect to "/"
       end
@@ -31,8 +30,23 @@ class PilotsController < ApplicationController
   #------------------READ------------------
 
   get '/pilots/:id' do
-    @pilot = Pilot.find(session[:id])
-    erb :'pilots/show_pilot'
+    if logged_in?
+      @pilot = Pilot.find(params[:id])
+      erb :'pilots/show_pilot'
+    else
+      flash[:notice] = "You don't have that kind of authority Airman!"
+      redirect to '/login'
+    end
+  end
+
+  get '/pilots/:id/session' do
+    if logged_in?
+      @pilot = Pilot.find(session[:id])
+      erb :'pilots/show_session'
+    else
+      flash[:notice] = "You don't have that kind of authority Airman!"
+      redirect to '/login'
+    end
   end
 
   get '/roster' do
@@ -40,6 +54,7 @@ class PilotsController < ApplicationController
       @pilots = Pilot.all
       erb :'pilots/show_roster'
     else
+      flash[:notice] = "You don't have that kind of authority Airman!"
       redirect to "/login"
     end
   end
@@ -61,13 +76,9 @@ class PilotsController < ApplicationController
 
   patch '/pilots/:id' do
     @pilot = Pilot.find(session[:id])
-    @pilot.username = (params[:username])
-    @pilot.branch = (params[:branch])
-    @pilot.rank = (params[:rank])
-    @pilot.victories = (params[:victories])
-    @pilot.email = (params[:email])
+    @pilot.update(params[:pilot])
     @pilot.save
-    redirect to "/roster"
+    redirect to "/"
   end
 
     #-----------------DELETE-----------------
@@ -78,10 +89,10 @@ class PilotsController < ApplicationController
       if @pilot.id == current_user.id
         @pilot.delete
       end
-      redirect to '/roster'
+      redirect to '/'
     else
       flash[:notice] = "I don't see enough rank on your shoulders Airman!"
-      redirect to '/roster'
+      redirect to '/'
     end
   end
 end

@@ -1,28 +1,37 @@
 <h3>ADD NEW AIRCRAFT TO HANGAR</h3>
 <br />
+
 <form action="/planes" method="post">
   <table>
     <tr>
       <td align='right' style="padding:0 0 15px 0;">NAME/DESIGNATION:&nbsp&nbsp&nbsp</td>
-      <td style="padding:0 0 15px 0;"><input type="text" name="name"></td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="plane[name]"></td>
     </tr>
     <tr>
       <td align='right' style="padding:0 0 15px 0;">MANUFACTURER:&nbsp&nbsp&nbsp</td>
-      <td style="padding:0 0 15px 0;"><input type="text" name="manufacturer"></td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="plane[manufacturer]"></td>
     </tr>
     <tr>
       <td align='right' style="padding:0 0 15px 0;">TOP SPEED:&nbsp&nbsp&nbsp</td>
-      <td style="padding:0 0 15px 0;"><input type="number" name="top_speed"></td>
+      <td style="padding:0 0 15px 0;"><input type="number" name="plane[top_speed]"></td>
     </tr>
     <tr>
       <td align='right' style="padding:0 0 15px 0;">CEILING:&nbsp&nbsp&nbsp</td>
-      <td style="padding:0 0 15px 0;"><input type="number" name="ceiling"></td>
+      <td style="padding:0 0 15px 0;"><input type="number" name="plane[ceiling]"></td>
     </tr>
     <tr>
       <td align='right' style="padding:0 0 15px 0;">CLASSIFICATION:&nbsp&nbsp&nbsp</td>
-      <td style="padding:0 0 15px 0;"><input type="text" name="classification"></td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="plane[classification]"></td>
     </tr>
   </table>
   <br />
+
+  <h4>SELECT YOUR WEAPONS</h4>
+  <br />
+    <% Weapon.all.each do |w| %>
+      <label><%= w.name %></label>
+      <input type="checkbox" id="weapon_<%=w.id%>" name="plane[weapon_ids][]" value="<%= w.id %>"><br />
+    <% end %>
+    <br />
   <input type="submit" value="Submit">
 </form>

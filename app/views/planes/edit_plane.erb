@@ -1,0 +1,42 @@
+<h3>EDIT AIRCRAFT</h3>
+<br />
+<form action="/planes/<%= @plane.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <table>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">NAME/DESIGNATION:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="plane[name]" placeholder="<%= @plane.name %>"></td>
+    </tr>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">MANUFACTURER:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="plane[manufacturer]" placeholder="<%= @plane.manufacturer %>"></td>
+    </tr>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">TOP SPEED:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="pilot[top_speed]" placeholder="<%= @plane.top_speed %>"></td>
+    </tr>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">CEILING:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="plane[ceiling]" placeholder="<%= @plane.ceiling %>"></td>
+    </tr>
+    <tr>
+      <td align='right' style="padding:0 0 15px 0;">TYPE:&nbsp&nbsp&nbsp</td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="plane[classification]" placeholder="<%= @plane.classification %>"></td>
+    </tr>
+  </table>
+  <br />
+
+  <h4>SELECT YOUR WEAPONS</h4>
+  <sm>Current Weapons (please re-check below to keep...)</sm>
+    <% @plane.weapons.each do |p| %>
+      <a href="/weapons/<%= p.id %>"><%= p.name %>&nbsp&nbsp&nbsp</a>
+    <% end %>
+  <br />
+  <br />
+    <% Weapon.all.each do |w| %>
+      <label><%= w.name %>&nbsp<%= w.classification %></label>
+      <input type="checkbox" id="weapon_<%=w.id%>" name="plane[weapon_ids][]" value="<%= w.id %>"><br />
+    <% end %>
+  <br />
+  <input name="submit" value="Submit" type="Submit">
+</form>

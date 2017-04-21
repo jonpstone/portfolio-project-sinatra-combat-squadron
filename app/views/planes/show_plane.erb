@@ -1,15 +1,55 @@
 <h3><%= @plane.manufacturer %>&nbsp<%= @plane.name %></h3>
-<br>
-CLASSIFICATION: <%= @plane.classification %><br>
-TOP SPEED: <%= @plane.top_speed %><br>
-CEILING: <%= @plane.ceiling %>
-<br>
-CURRENT AIRCREW:
-<br>
-<% @plane.pilots.each do |p| %>
-  PILOT: <a href="/pilots/<%= p.slug %>"><%= p.username %></a>&nbspVICTORIES: <%= p.victories %><br>
-<% end %>
-<br>
+<h4><a href="/planes/<%= @plane.id %>/edit">EDIT AIRCRAFT?</a></h4>
+<br />
+<b>CLASSIFICATION</b>&nbsp&nbsp&nbsp<%= @plane.classification %>&nbsp&nbsp&nbsp
+<b>TOP SPEED</b>&nbsp&nbsp&nbsp<%= @plane.top_speed %>&nbsp&nbsp&nbsp
+<b>CEILING</b>&nbsp&nbsp&nbsp<%= @plane.ceiling %>&nbsp&nbsp&nbsp
+<br  />
+<br  />
+<em>CURRENT AIRCREW</em>
+<br  />
+<table>
+  <tr>
+    <th style="padding:0 15px 0 0;">PILOT</th>
+    <th style="padding:0 15px 0 0;">VICTORIES</th>
+  </tr>
+  <tr>
+    <td>
+      <br />
+    </td>
+  </tr>
+  <% @plane.pilots.each do |p| %>
+  <tr>
+    <td style="padding:0 15px 0 0;"><a href="/pilots/<%= p.id %>"><%= p.username %></a></td>
+    <td style="padding:0 15px 0 0;"><%= p.victories %></td>
+  </tr>
+  <% end %>
+</table>
+<br  />
+<br  />
+<em>CURRENT WEAPONS</em>
+<br  />
+<table>
+  <tr>
+    <th style="padding:0 15px 0 0;">NAME</th>
+    <th style="padding:0 15px 0 0;">TYPE</th>
+    <th style="padding:0 15px 0 0;">CALIBER</th>
+  </tr>
+  <tr>
+    <td>
+      <br />
+    </td>
+  </tr>
+  <% @plane.weapons.each do |w| %>
+  <tr>
+    <td style="padding:0 15px 0 0;"><a href="/weapons/<%= w.id %>"><%= w.name %></a></td>
+    <td style="padding:0 15px 0 0;"><%= w.classification %></td>
+    <td style="padding:0 15px 0 0;"><%= w.caliber %></td>
+  </tr>
+  <% end %>
+</table>
+<br  />
+<br  />
 <form action="/planes/<%= @plane.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Plane">

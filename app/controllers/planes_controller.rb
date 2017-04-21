@@ -20,11 +20,8 @@ class PlanesController < ApplicationController
         flash[:notice] = "Hey, fill out all fields Airman!"
         redirect to '/planes/new'
       else
-        @plane = Plane.create(name: params[:name],
-        manufacturer: params[:manufacturer],
-        top_speed: params[:top_speed],
-        ceiling: params[:ceiling],
-        type: params[:type])
+        @plane = Plane.create(params[:plane])
+        @plane.save
         redirect to '/hangar'
       end
     end
@@ -57,8 +54,11 @@ class PlanesController < ApplicationController
   get '/planes/:id/edit' do
     if logged_in?
       @plane = Plane.find(params[:id])
-      if @plane.pilot_id == current_user
-        erb :'planes/edit_weapon'
+      if @plane.pilot_ids.include?(current_user.id)
+        erb :'planes/edit_plane'
+      else
+        flash[:notice] = "You don't have that kind of authority Airman!"
+        redirect to '/hangar'
       end
     else
       flash[:notice] = "You don't have that kind of authority Airman!"
@@ -68,11 +68,7 @@ class PlanesController < ApplicationController
 
   patch '/planes/:id' do
     @plane = Plane.find(params[:id])
-    @plane.name = (params[:name])
-    @plane.manufacturer = (params[:manufacturer])
-    @plane.top_speed = (params[:top_speed])
-    @plane.ceiling = (params[:ceiling])
-    @plane.type = (params[:type])
+    @plane.update(params[:plane])
     @plane.save
     redirect to '/hangar'
   end
@@ -82,7 +78,7 @@ class PlanesController < ApplicationController
   delete '/planes/:id/delete' do
     if logged_in?
       @plane = Plane.find(params[:id])
-      if @plane.pilot_id == current_user.id
+      if @plane.pilot_ids.include?(current_user.id)
         @plane.delete
       end
       redirect to '/hangar'
