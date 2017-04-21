@@ -1,3 +1,5 @@
+require 'rack-flash'
+
 class PilotsController < ApplicationController
   use Rack::Flash
 
@@ -5,7 +7,7 @@ class PilotsController < ApplicationController
 
   get '/enlist' do
     if logged_in?
-      flash[:notice] = 'You have your wings already!'
+      flash[:message] = 'You have your wings already!'
       redirect to "/"
     else
       erb :'pilots/create_pilot'
@@ -13,9 +15,9 @@ class PilotsController < ApplicationController
   end
 
   post '/enlist' do
-    params.each do |k, v|
-      if v.blank?
-        flash[:notice] = 'Hey, fill out all fields Airman!'
+    params[:pilot].any? do |k, v|
+      if v == "" || v == " "
+        flash[:message] = "Fill out all fields Airman!"
         redirect to "/enlist"
       else
         @pilot = Pilot.create(params[:pilot])
@@ -34,7 +36,7 @@ class PilotsController < ApplicationController
       @pilot = Pilot.find(params[:id])
       erb :'pilots/show_pilot'
     else
-      flash[:notice] = "You don't have that kind of authority Airman!"
+      flash[:message] = "You don't have that kind of authority Airman!"
       redirect to '/login'
     end
   end
@@ -44,7 +46,7 @@ class PilotsController < ApplicationController
       @pilot = Pilot.find(session[:id])
       erb :'pilots/show_session'
     else
-      flash[:notice] = "You don't have that kind of authority Airman!"
+      flash[:message] = "You don't have that kind of authority Airman!"
       redirect to '/login'
     end
   end
@@ -54,7 +56,7 @@ class PilotsController < ApplicationController
       @pilots = Pilot.all
       erb :'pilots/show_roster'
     else
-      flash[:notice] = "You don't have that kind of authority Airman!"
+      flash[:message] = "You don't have that kind of authority Airman!"
       redirect to "/login"
     end
   end
@@ -69,7 +71,7 @@ class PilotsController < ApplicationController
         erb :'pilots/edit_pilot'
       end
     else
-      flash[:notice] = "I don't see enough rank on your shoulders Airman!"
+      flash[:message] = "I don't see enough rank on your shoulders Airman!"
       redirect to "/login"
     end
   end
@@ -89,9 +91,10 @@ class PilotsController < ApplicationController
       if @pilot.id == current_user.id
         @pilot.delete
       end
-      redirect to '/'
+      session.clear
+      redirect to '/login'
     else
-      flash[:notice] = "I don't see enough rank on your shoulders Airman!"
+      flash[:message] = "I don't see enough rank on your shoulders Airman!"
       redirect to '/'
     end
   end

@@ -1,6 +1,8 @@
 <h4>ENLIST BELOW AND FLY TO VICTORY!</h4>
+<% if flash.has?(:message) %>
+  <h2><font color="red"><%= flash[:message] %></font></h2>
+<% end %>
 <br />
-
 <form action="/enlist" method="post">
   <table>
     <tr>

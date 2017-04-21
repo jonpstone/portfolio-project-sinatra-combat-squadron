@@ -1,4 +1,8 @@
 <h3>DESIGN A NEW WEAPON</h3>
+<% if flash.has?(:message) %>
+  <h2><font color="red"><%= flash[:message] %></font></h2>
+<% end %>
+<br />
 <br />
 <form action="/weapons" method="post">
   <table>

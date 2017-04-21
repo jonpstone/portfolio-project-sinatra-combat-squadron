@@ -9,15 +9,15 @@ class PlanesController < ApplicationController
     if logged_in?
       erb :'planes/create_plane'
     else
-      flash[:notice] = "You don't have that kind of authority Airman!"
+      flash[:message] = "You don't have that kind of authority Airman!"
       redirect to '/login'
     end
   end
 
   post '/planes' do
-    params.each do |k, v|
-      if v.blank?
-        flash[:notice] = "Hey, fill out all fields Airman!"
+    params[:plane].any? do |k, v|
+      if v == "" || v == " "
+        flash[:message] = "Fill out all fields Airman!"
         redirect to '/planes/new'
       else
         @plane = Plane.create(params[:plane])
@@ -34,7 +34,7 @@ class PlanesController < ApplicationController
       @plane = Plane.find(params[:id])
       erb :'planes/show_plane'
     else
-      flash[:notice] = "You don't have that kind of authority Airman!"
+      flash[:message] = "You don't have that kind of authority Airman!"
       redirect to '/login'
     end
   end
@@ -44,7 +44,7 @@ class PlanesController < ApplicationController
       @plane = Plane.all
       erb :'planes/show_hangar'
     else
-      flash[:notice] = "Restricted area! Check in with the MPs!"
+      flash[:message] = "Restricted area! Check in with the MPs!"
       redirect to '/login'
     end
   end
@@ -57,11 +57,11 @@ class PlanesController < ApplicationController
       if @plane.pilot_ids.include?(current_user.id)
         erb :'planes/edit_plane'
       else
-        flash[:notice] = "You don't have that kind of authority Airman!"
+        flash[:message] = "You don't have that kind of authority Airman!"
         redirect to '/hangar'
       end
     else
-      flash[:notice] = "You don't have that kind of authority Airman!"
+      flash[:message] = "You don't have that kind of authority Airman!"
       redirect to '/login'
     end
   end
@@ -83,7 +83,7 @@ class PlanesController < ApplicationController
       end
       redirect to '/hangar'
     else
-      flash[:notice] = "I don't see enough rank on your shoulders Airman!"
+      flash[:message] = "I don't see enough rank on your shoulders Airman!"
       redirect to '/hangar'
     end
   end

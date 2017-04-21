@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <h3>EDIT AIRCRAFT</h3>
 <br />
 <form action="/planes/<%= @plane.id %>" method="post">

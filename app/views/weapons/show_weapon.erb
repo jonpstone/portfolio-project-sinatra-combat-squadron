@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <h3>WEAPON</h3>
 <h4><a href="/weapons/<%= @weapon.id %>/edit">EDIT WEAPON?</a></h4>
 <br />

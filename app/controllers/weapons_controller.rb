@@ -9,15 +9,15 @@ class WeaponsController < ApplicationController
     if logged_in?
       erb :'weapons/create_weapon'
     else
-      flash[:notice] = "You don't have that kind of authority Airman!"
+      flash[:message] = "You don't have that kind of authority Airman!"
       redirect to '/login'
     end
   end
 
   post '/weapons' do
-    params.each do |k, v|
-      if v.blank?
-        flash[:notice] = "Hey, fill out all fields Airman!"
+    params[:weapon].any? do |k, v|
+      if v == "" || v == " "
+        flash[:message] = "Fill out all fields Airman!"
         redirect to '/weapons/new'
       else
         @weapon = Weapon.create(params[:weapon])
@@ -34,7 +34,7 @@ class WeaponsController < ApplicationController
       @weapon = Weapon.find(params[:id])
       erb :'weapons/show_weapon'
     else
-      flash[:notice] = "You don't have that kind of authority Airman!"
+      flash[:message] = "You don't have that kind of authority Airman!"
       redirect to '/login'
     end
   end
@@ -44,7 +44,7 @@ class WeaponsController < ApplicationController
       @weapons = Weapon.all
       erb :'weapons/show_armory'
     else
-      flash[:notice] = "Restricted area! Check in with the MPs!"
+      flash[:message] = "Restricted area! Check in with the MPs!"
       redirect to '/login'
     end
   end
@@ -56,7 +56,7 @@ class WeaponsController < ApplicationController
       @weapon = Weapon.find(params[:id])
       erb :'weapons/edit_weapon'
     else
-      flash[:notice] = "You don't have that kind of authority Airman!"
+      flash[:message] = "You don't have that kind of authority Airman!"
       redirect to '/login'
     end
   end
@@ -79,7 +79,7 @@ class WeaponsController < ApplicationController
       end
       redirect to '/armory'
     else
-      flash[:notice] = "I don't see enough rank on your shoulders Airman!"
+      flash[:message] = "I don't see enough rank on your shoulders Airman!"
       redirect to '/armory'
     end
   end

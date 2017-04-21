@@ -2,10 +2,11 @@
 <br  />
 <b>BRANCH/SERVICE</b>&nbsp&nbsp&nbsp<%= @pilot.branch %>
 <br />
-<br>
+<br />
 <b>AERIAL VICTORIES</b>&nbsp&nbsp&nbsp<%= @pilot.victories %>
 <br />
 <br />
+
 <table>
   <tr>
     <th style="padding:0 15px 0 0;">CURRENT AIRCRAFT</th>
@@ -23,9 +24,9 @@
   </tr>
   <% end %>
 </table>
-<br />
 </form>
 <br />
+
 <form action="/pilots/<%= @pilot.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Pilot">

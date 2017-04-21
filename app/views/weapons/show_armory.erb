@@ -1,6 +1,10 @@
 <h3>STATION ARMORY</h3>
 <h4><a href="/weapons/new">NEW WEAPON?</a></h4>
+<% if flash.has?(:message) %>
+  <h2><font color="red"><%= flash[:message] %></font></h2>
+<% end %>
 <br />
+</br/>
 <br />
 <table>
   <tr>

@@ -34,7 +34,7 @@ class ApplicationController < Sinatra::Base
       session[:username] = pilot.username
       redirect to "/"
     else
-      flash[:message] = "Restricted area! Check in with the MPs."
+      flash[:message] = "Restricted area! Check in with the MPs or enlist!"
       redirect to "/login"
     end
   end
