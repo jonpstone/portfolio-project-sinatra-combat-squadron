@@ -32,7 +32,7 @@
   <h4>SELECT YOUR WEAPONS</h4>
   <br />
     <% Weapon.all.each do |w| %>
-      <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= w.name %>&nbsp</label>
+      <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= w.name %></label>
       <input type="checkbox" id="weapon_<%=w.id%>" name="plane[weapon_ids][]" value="<%= w.id %>">
     <% end %>
   <br />
