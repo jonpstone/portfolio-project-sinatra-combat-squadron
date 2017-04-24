@@ -63,10 +63,16 @@ class WeaponsController < ApplicationController
 
   patch '/weapons/:id' do
     @weapon = Weapon.find(params[:id])
-    @weapon.classification = (params[:classification])
-    @weapon.caliber = (params[:caliber])
-    @weapon.save
-    redirect to '/armory'
+      params[:weapon].any? do |k, v|
+      if v == "" || v == " "
+        flash[:message] = "A weapon needs a name. Fill out all fields Airman!"
+        redirect to "/pilots/#{@weapon.id}/edit"
+      else
+        @weapon.update(params[:weapon])
+        @weapon.save
+        redirect to '/armory'
+      end
+    end
   end
 
   #-----------------DELETE-----------------
