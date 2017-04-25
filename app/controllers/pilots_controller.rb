@@ -15,13 +15,7 @@ class PilotsController < ApplicationController
   end
 
   post '/enlist' do
-    @pilot = Pilot.find(session[:id])
-    if params[:username].blank? ||
-      params[:branch].blank? ||
-      params[:rank].blank? ||
-      params[:victories].blank? ||
-      params[:email].blank? ||
-      params[:password].blank?
+    if params[:pilot].values.any? {|v| v.empty? or v == ""}
       flash[:message] = "Fill out all fields Airman!"
       redirect to "/enlist"
     else
@@ -82,12 +76,7 @@ class PilotsController < ApplicationController
 
   patch '/pilots/:id' do
     @pilot = Pilot.find(session[:id])
-    if params[:username].blank? ||
-    params[:branch].blank? ||
-    params[:rank].blank? ||
-    params[:victories].blank? ||
-    params[:email].blank? ||
-    params[:password].blank?
+    if params[:pilot].values.any? {|v| v.empty? or v == ""}
       flash[:message] = "You forget your name? Fill out all fields Airman!"
       redirect to "/pilots/#{@pilot.id}/edit"
     else

@@ -15,9 +15,7 @@ class WeaponsController < ApplicationController
   end
 
   post '/weapons' do
-    if params[:name].blank? ||
-      params[:classification].blank? ||
-      params[:caliber].blank?
+    if params[:weapon].values.any? {|v| v.empty? or v == ""}
       flash[:message] = "Fill out all fields Airman!"
       redirect to '/weapons/new'
     else
@@ -63,9 +61,7 @@ class WeaponsController < ApplicationController
 
   patch '/weapons/:id' do
     @weapon = weapon.find(params[:id])
-    if params[:name].blank? ||
-      params[:classification].blank? ||
-      params[:caliber].blank?
+    if params[:weapon].values.any? {|v| v.empty? or v == ""}
       flash[:message] = "A weapon needs a name. Fill out all fields Airman!"
       redirect to "/weapons/#{@weapon.id}/edit"
     else

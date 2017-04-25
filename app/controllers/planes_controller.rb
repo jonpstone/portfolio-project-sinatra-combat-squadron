@@ -15,13 +15,9 @@ class PlanesController < ApplicationController
   end
 
   post '/planes' do
-  if params[:name].blank? ||
-    params[:manufacturer].blank? ||
-    params[:top_speed].blank? ||
-    params[:ceiling].blank? ||
-    params[:classification].blank?
-    flash[:message] = "Fill out all fields Airman!"
-    redirect to '/planes/new'
+    if params[:plane].values.any? {|v| v.empty? or v == ""}
+      flash[:message] = "Fill out all fields Airman!"
+      redirect to '/planes/new'
     else
       @plane = Plane.create(params[:plane])
       @plane.save
@@ -70,11 +66,7 @@ class PlanesController < ApplicationController
 
   patch '/planes/:id' do
     @plane = Plane.find(params[:id])
-    if params[:name].blank? ||
-      params[:manufacturer].blank? ||
-      params[:top_speed].blank? ||
-      params[:ceiling].blank? ||
-      params[:classification].blank?
+    if params[:plane].values.any? {|v| v.empty? or v == ""}
       flash[:message] = "A plane needs a name. Fill out all fields Airman!"
       redirect to "/planes/#{@plane.id}/edit"
     else
