@@ -15,17 +15,21 @@ class PilotsController < ApplicationController
   end
 
   post '/enlist' do
-    params[:pilot].any? do |k, v|
-      if v == "" || v == " "
-        flash[:message] = "Fill out all fields Airman!"
-        redirect to "/enlist"
-      else
-        @pilot = Pilot.create(params[:pilot])
-        session[:id] = @pilot.id
-        session[:username] = @pilot.username
-        @pilot.save
-        redirect to "/"
-      end
+    @pilot = Pilot.find(session[:id])
+    if params[:username].blank? ||
+      params[:branch].blank? ||
+      params[:rank].blank? ||
+      params[:victories].blank? ||
+      params[:email].blank? ||
+      params[:password].blank?
+      flash[:message] = "Fill out all fields Airman!"
+      redirect to "/enlist"
+    else
+      @pilot = Pilot.create(params[:pilot])
+      session[:id] = @pilot.id
+      session[:username] = @pilot.username
+      @pilot.save
+      redirect to "/"
     end
   end
 
@@ -78,15 +82,18 @@ class PilotsController < ApplicationController
 
   patch '/pilots/:id' do
     @pilot = Pilot.find(session[:id])
-    params[:pilot].any? do |k, v|
-      if v.blank?
-        flash[:message] = "You forget your name? Fill out all fields Airman!"
-        redirect to "/pilots/#{@pilot.id}/edit"
-      else
-        @pilot.update(params[:pilot])
-        @pilot.save
-        redirect to "/"
-      end
+    if params[:username].blank? ||
+    params[:branch].blank? ||
+    params[:rank].blank? ||
+    params[:victories].blank? ||
+    params[:email].blank? ||
+    params[:password].blank?
+      flash[:message] = "You forget your name? Fill out all fields Airman!"
+      redirect to "/pilots/#{@pilot.id}/edit"
+    else
+      @pilot.update(params[:pilot])
+      @pilot.save
+      redirect to "/"
     end
   end
 

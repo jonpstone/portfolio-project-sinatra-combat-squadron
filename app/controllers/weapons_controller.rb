@@ -15,15 +15,15 @@ class WeaponsController < ApplicationController
   end
 
   post '/weapons' do
-    params[:weapon].any? do |k, v|
-      if v == "" || v == " "
-        flash[:message] = "Fill out all fields Airman!"
-        redirect to '/weapons/new'
-      else
-        @weapon = Weapon.create(params[:weapon])
-        @weapon.save
-        redirect to '/armory'
-      end
+    if params[:name].blank? ||
+      params[:classification].blank? ||
+      params[:caliber].blank?
+      flash[:message] = "Fill out all fields Airman!"
+      redirect to '/weapons/new'
+    else
+      @weapon = Weapon.create(params[:weapon])
+      @weapon.save
+      redirect to '/armory'
     end
   end
 
@@ -62,16 +62,16 @@ class WeaponsController < ApplicationController
   end
 
   patch '/weapons/:id' do
-    @weapon = Weapon.find(params[:id])
-      params[:weapon].any? do |k, v|
-      if v.blank?
-        flash[:message] = "A weapon needs a name. Fill out all fields Airman!"
-        redirect to "/weapons/#{@weapon.id}/edit"
-      else
-        @weapon.update(params[:weapon])
-        @weapon.save
-        redirect to '/armory'
-      end
+    @weapon = weapon.find(params[:id])
+    if params[:name].blank? ||
+      params[:classification].blank? ||
+      params[:caliber].blank?
+      flash[:message] = "A weapon needs a name. Fill out all fields Airman!"
+      redirect to "/weapons/#{@weapon.id}/edit"
+    else
+      @weapon.update(params[:weapon])
+      @weapon.save
+      redirect to '/armory'
     end
   end
 
