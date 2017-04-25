@@ -20,10 +20,10 @@ Install [Shotgun](https://github.com/rtomayko/shotgun) and [bundler](https://git
 Enter directory `../portfolio-project-sinatra-combat-squadron` and run `bundle install`
 
 **Once in the directory**
-Enter `shotgun`
+Enter `shotgun`.
 
 **Any issues? Try..**
-Enter `bundle exec shotgun`
+Enter `bundle exec shotgun`.
 
 ## CONTRIBUTING
 

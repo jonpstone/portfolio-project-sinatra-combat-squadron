@@ -64,9 +64,9 @@ class WeaponsController < ApplicationController
   patch '/weapons/:id' do
     @weapon = Weapon.find(params[:id])
       params[:weapon].any? do |k, v|
-      if v == "" || v == " "
+      if v.blank?
         flash[:message] = "A weapon needs a name. Fill out all fields Airman!"
-        redirect to "/pilots/#{@weapon.id}/edit"
+        redirect to "/weapons/#{@weapon.id}/edit"
       else
         @weapon.update(params[:weapon])
         @weapon.save
@@ -80,9 +80,7 @@ class WeaponsController < ApplicationController
   delete '/weapons/:id/delete' do
     if logged_in?
       @weapon = Weapon.find(params[:id])
-      if @weapon.pilot_id == current_user.id
-        @weapon.delete
-      end
+      @weapon.delete
       redirect to '/armory'
     else
       flash[:message] = "I don't see enough rank on your shoulders Airman!"

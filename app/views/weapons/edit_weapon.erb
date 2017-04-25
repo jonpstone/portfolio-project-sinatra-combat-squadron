@@ -1,4 +1,7 @@
 <h3>EDIT WEAPON</h3>
+<% if flash.has?(:message) %>
+  <h2><font color="red"><%= flash[:message] %></font></h2>
+<% end %>
 <br />
 <form action="/weapons/<%= @weapon.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
@@ -18,4 +21,3 @@
   </table>
   <input name="submit" value="Submit" type="Submit">
 </form>
-    

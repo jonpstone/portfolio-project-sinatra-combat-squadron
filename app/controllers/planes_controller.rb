@@ -69,9 +69,9 @@ class PlanesController < ApplicationController
   patch '/planes/:id' do
     @plane = Plane.find(params[:id])
     params[:plane].any? do |k, v|
-      if v == "" || v == " "
+      if v.blank?
         flash[:message] = "A plane needs a name. Fill out all fields Airman!"
-        redirect to "/pilots/#{@plane.id}/edit"
+        redirect to "/planes/#{@plane.id}/edit"
       else
         @plane.update(params[:plane])
         @plane.save

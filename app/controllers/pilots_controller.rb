@@ -79,9 +79,9 @@ class PilotsController < ApplicationController
   patch '/pilots/:id' do
     @pilot = Pilot.find(session[:id])
     params[:pilot].any? do |k, v|
-      if v == "" || v == " "
+      if v.blank?
         flash[:message] = "You forget your name? Fill out all fields Airman!"
-        redirect to '/pilots/:id/edit'
+        redirect to "/pilots/#{@pilot.id}/edit"
       else
         @pilot.update(params[:pilot])
         @pilot.save
