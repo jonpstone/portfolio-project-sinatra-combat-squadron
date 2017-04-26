@@ -60,7 +60,7 @@ class WeaponsController < ApplicationController
   end
 
   patch '/weapons/:id' do
-    @weapon = weapon.find(params[:id])
+    @weapon = Weapon.find(params[:id])
     if params[:weapon].values.any? {|v| v.empty? or v == ""}
       flash[:message] = "A weapon needs a name. Fill out all fields Airman!"
       redirect to "/weapons/#{@weapon.id}/edit"
