@@ -8,15 +8,15 @@
   <table>
     <tr>
       <td align='right' style="padding:0 0 15px 0;">NAME:&nbsp&nbsp&nbsp</td>
-      <td style="padding:0 0 15px 0;"><input type="text" name="weapon[name]"><br></td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="weapon[name]" value="<%= @weapon.name %>"></td>
     </tr>
     <tr>
       <td align='right' style="padding:0 0 15px 0;">TYPE:&nbsp&nbsp&nbsp</td>
-      <td style="padding:0 0 15px 0;"><input type="text" name="weapon[classification]"></td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="weapon[classification]" value="<%= @weapon.classification %>"></td>
     </tr>
     <tr>
       <td align='right' style="padding:0 0 15px 0;">CALIBER:&nbsp&nbsp&nbsp</td>
-      <td style="padding:0 0 15px 0;"><input type="text" name="weapon[caliber]"></td>
+      <td style="padding:0 0 15px 0;"><input type="text" name="weapon[caliber]" value="<%= @weapon.caliber %>"></td>
     </tr>
   </table>
   <br />

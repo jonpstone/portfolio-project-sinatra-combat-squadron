@@ -7,6 +7,7 @@ class WeaponsController < ApplicationController
 
   get '/weapons/new' do
     if logged_in?
+      @weapon = Weapon.new
       erb :'weapons/create_weapon'
     else
       flash[:message] = "You don't have that kind of authority Airman!"
@@ -15,13 +16,12 @@ class WeaponsController < ApplicationController
   end
 
   post '/weapons' do
-    if params[:weapon].values.any? {|v| v.empty? or v == ""}
-      flash[:message] = "Fill out all fields Airman!"
-      redirect to '/weapons/new'
-    else
-      @weapon = Weapon.create(params[:weapon])
-      @weapon.save
+    @weapon = Weapon.new(params[:weapon])
+    if @weapon.save
       redirect to '/armory'
+    else
+      flash.now[:message]= @weapon.errors.full_messages.join(', ')
+      erb :'weapons/create_weapon'
     end
   end
 
@@ -61,13 +61,12 @@ class WeaponsController < ApplicationController
 
   patch '/weapons/:id' do
     @weapon = Weapon.find(params[:id])
-    if params[:weapon].values.any? {|v| v.empty? or v == ""}
-      flash[:message] = "A weapon needs a name. Fill out all fields Airman!"
-      redirect to "/weapons/#{@weapon.id}/edit"
-    else
-      @weapon.update(params[:weapon])
+    if @weapon.update(params[:weapon])
       @weapon.save
       redirect to '/armory'
+    else
+      flash.now[:message] = @weapon.errors.full_messages.join(', ')
+      erb :'weapons/edit_weapon'
     end
   end
 

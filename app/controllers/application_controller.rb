@@ -30,7 +30,7 @@ class ApplicationController < Sinatra::Base
   post '/login' do
     pilot = Pilot.find_by(username: params[:username])
     if pilot && pilot.authenticate(params[:password])
-      session[:id] = pilot.id
+      session[:pilot_id] = pilot.id
       session[:username] = pilot.username
       redirect to "/"
     else
@@ -48,11 +48,11 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def logged_in?
-      !!session[:id]
+      !!current_user
     end
 
     def current_user
-      Pilot.find(session[:id])
+      @current_user ||= Pilot.find_by(id: session[:pilot_id]) if session[:pilot_id]
     end
 
     def username

@@ -7,6 +7,7 @@ class PlanesController < ApplicationController
 
   get '/planes/new' do
     if logged_in?
+      @plane = Plane.new
       erb :'planes/create_plane'
     else
       flash[:message] = "You don't have that kind of authority Airman!"
@@ -15,13 +16,12 @@ class PlanesController < ApplicationController
   end
 
   post '/planes' do
-    if params[:plane].values.any? {|v| v.empty? or v == ""}
-      flash[:message] = "Fill out all fields Airman!"
-      redirect to '/planes/new'
-    else
-      @plane = Plane.create(params[:plane])
-      @plane.save
+    @plane = Plane.new(params[:plane])
+    if @plane.save
       redirect to '/hangar'
+    else
+      flash.now[:message] =  @plane.errors.full_messages.join(', ')
+      erb :'planes/create_plane'
     end
   end
 
@@ -55,7 +55,7 @@ class PlanesController < ApplicationController
       if @plane.pilot_ids.include?(current_user.id)
         erb :'planes/edit_plane'
       else
-        flash[:message] = "You don't have that kind of authority Airman!"
+        flash[:message] = "You be a registered pilot to do this!"
         redirect to '/hangar'
       end
     else
@@ -66,13 +66,12 @@ class PlanesController < ApplicationController
 
   patch '/planes/:id' do
     @plane = Plane.find(params[:id])
-    if params[:plane].values.any? {|v| v.empty? or v == ""}
-      flash[:message] = "A plane needs a name. Fill out all fields Airman!"
-      redirect to "/planes/#{@plane.id}/edit"
-    else
-      @plane.update(params[:plane])
+    if @plane.update(params[:plane])
       @plane.save
       redirect to '/hangar'
+    else
+      flash.now[:message] = @plane.errors.full_messages.join(', ')
+      erb :'planes/create_plane'
     end
   end
 

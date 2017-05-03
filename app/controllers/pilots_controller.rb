@@ -7,23 +7,22 @@ class PilotsController < ApplicationController
 
   get '/enlist' do
     if logged_in?
-      flash[:message] = 'You have your wings already!'
+      flash[:message] = "You have your wings already!"
       redirect to "/"
     else
+      @pilot = Pilot.new
       erb :'pilots/create_pilot'
     end
   end
 
   post '/enlist' do
-    if params[:pilot].values.any? {|v| v.empty? or v == ""}
-      flash[:message] = "Fill out all fields Airman!"
-      redirect to "/enlist"
-    else
-      @pilot = Pilot.create(params[:pilot])
-      session[:id] = @pilot.id
-      session[:username] = @pilot.username
-      @pilot.save
+    @pilot = Pilot.new(params[:pilot])
+    if @pilot.save
+      session[:pilot_id] = @pilot.id
       redirect to "/"
+    else
+      flash.now[:message] =  @pilot.errors.full_messages.join(', ')
+      erb :'pilots/create_pilot'
     end
   end
 
@@ -41,7 +40,7 @@ class PilotsController < ApplicationController
 
   get '/pilots/:id/session' do
     if logged_in?
-      @pilot = Pilot.find(session[:id])
+      @pilot = Pilot.find(session[:pilot_id])
       erb :'pilots/show_session'
     else
       flash[:message] = "You don't have that kind of authority Airman!"
@@ -63,8 +62,8 @@ class PilotsController < ApplicationController
 
   get '/pilots/:id/edit' do
     if logged_in?
-      Pilot.find(session[:id])
-      @pilot = Pilot.find(session[:id])
+      Pilot.find(session[:pilot_id])
+      @pilot = Pilot.find(session[:pilot_id])
       if @pilot.id == current_user.id
         erb :'pilots/edit_pilot'
       end
@@ -75,22 +74,21 @@ class PilotsController < ApplicationController
   end
 
   patch '/pilots/:id' do
-    @pilot = Pilot.find(session[:id])
-    if params[:pilot].values.any? {|v| v.empty? or v == ""}
-      flash[:message] = "You forget your name? Fill out all fields Airman!"
-      redirect to "/pilots/#{@pilot.id}/edit"
-    else
-      @pilot.update(params[:pilot])
+    @pilot = Pilot.find(session[:pilot_id])
+    if @pilot.update(params[:pilot])
       @pilot.save
-      redirect to "/"
+      redirect to "/roster"
+    else
+      flash.now[:message] = @pilot.errors.full_messages.join(', ')
+      erb :'pilots/edit_pilot'
     end
   end
 
-    #-----------------DELETE-----------------
+  #-----------------DELETE-----------------
 
   delete '/pilots/:id/delete' do
     if logged_in?
-      @pilot = Pilot.find(session[:id])
+      @pilot = Pilot.find(session[:pilot_id])
       if @pilot.id == current_user.id
         @pilot.delete
       end

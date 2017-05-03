@@ -1,8 +1,7 @@
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
-<% end %>
-
 <h3><%= @plane.manufacturer %>&nbsp<%= @plane.name %></h3>
+<% if flash.has?(:message) %>
+  <h2><font color="red"><%= flash[:message] %></font></h2>
+<% end %>
 <h4><a href="/planes/<%= @plane.id %>/edit">EDIT AIRCRAFT?</a></h4>
 <br />
 <b>CLASSIFICATION</b>&nbsp&nbsp&nbsp<%= @plane.classification %>&nbsp&nbsp&nbsp

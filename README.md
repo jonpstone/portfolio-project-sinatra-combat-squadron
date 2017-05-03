@@ -16,8 +16,11 @@ Install [Shotgun](https://github.com/rtomayko/shotgun) and [bundler](https://git
 
 ## USAGE
 
-**To run in a browser**
-Enter directory `../portfolio-project-sinatra-combat-squadron` and run `bundle install`
+**setup local gems**
+Enter directory `../portfolio-project-sinatra-combat-squadron` and run migrations `bundle install`.
+
+**Run Migrations**
+While in the same directory run `rake db:migrate`.
 
 **Once in the directory**
 Enter `shotgun`.

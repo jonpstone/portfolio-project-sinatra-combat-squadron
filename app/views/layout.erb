@@ -40,7 +40,7 @@
         <img src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/star-circle-128.png" height="25">
         &nbsp&nbsp&nbsp<a href="/login">SIGN IN</a>
       <% else %>
-        <% @pilot = Pilot.find(session[:id]) %>
+        <% @pilot = Pilot.find(session[:pilot_id]) %>
         <h4><a href="/pilots/<%= @pilot.id %>"><%= @pilot.username %></a> is logged in.</h4>
         <br />
         <br />
